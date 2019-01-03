@@ -1,0 +1,20 @@
+---
+- name: install vim
+  pacman:
+    name: gvim
+  become: yes
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - '~/.vim'
+    - '~/.vim/bundle'
+- name: Clone ctrlp repository
+  git:  repo=https://github.com/kien/ctrlp.vim.git
+    dest=~/.vim/bundle/ctrlp.vim
+- name: Configure ctrlp plugin
+  copy:
+    dest: ~/.vimrc
+    content: |
+      set runtimepath^=~/.vim/bundle/ctrlp.vim

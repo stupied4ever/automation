@@ -1,0 +1,10 @@
+---
+- name: Ruby | Ruby install | package dependencies
+  aur: 
+    name: ruby-install
+  become: yes
+  become_user: aur_builder
+
+- name: Ruby | Download list of rubies available
+  command: ruby-install
+  become: yes
