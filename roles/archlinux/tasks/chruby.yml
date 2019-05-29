@@ -4,3 +4,10 @@
    name: chruby
   become: yes
   become_user: aur_builder
+
+- name: Configure chruby on .bashrc
+  lineinfile:
+    path: /home/alface/.bashrc
+    state: present
+    line: 'source /usr/share/chruby/chruby.sh'
+

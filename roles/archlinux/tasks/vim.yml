@@ -10,11 +10,63 @@
   with_items:
     - '~/.vim'
     - '~/.vim/bundle'
-- name: Clone ctrlp repository
+- name: Clone ctrlp plugin
   git:  repo=https://github.com/kien/ctrlp.vim.git
     dest=~/.vim/bundle/ctrlp.vim
-- name: Configure ctrlp plugin
+- name: Clone vim-buffergator plugin
+  git:  repo=https://github.com/jeetsukumaran/vim-buffergator.git
+    dest=~/.vim/bundle/vim-buffergator.vim
+
+- name: Clone vim-ruby plugin
+  git:  repo=https://github.com/vim-ruby/vim-ruby.git
+    dest=~/.vim/bundle/vim-ruby.vim
+
+- name: Clone nerdtree plugin
+  git:  repo=https://github.com/scrooloose/nerdtree.git
+    dest=~/.vim/bundle/nerdtree.vim
+
+- name: Clone fugitive plugin
+  git:  repo=https://github.com/tpope/vim-fugitive.git
+    dest=~/.vim/bundle/vim-fugitive.vim
+
+
+- name: Configure my ~/.vimrc
   copy:
     dest: ~/.vimrc
     content: |
+      scriptencoding utf-8
+      set encoding=utf-8
+      let mapleader=','
+
+      set background=dark
+
+      set runtimepath^=~/.vim/bundle/nerdtree.vim
+      map <C-f> :NERDTreeToggle<CR>
+      let g:NERDTreeDirArrowExpandable='|'
+      let g:NERDTreeDirArrowCollapsible='+'
+
       set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+      " Configure vim-ruby
+      set runtimepath^=~/.vim/bundle/vim-ruby.vim
+      set nocompatible      " We're running Vim, not Vi!
+      syntax on             " Enable syntax highlighting
+      filetype on           " Enable filetype detection
+      filetype indent on    " Enable filetype-specific indenting
+      filetype plugin on    " Enable filetype-specific plugins
+
+      set runtimepath^=~/.vim/bundle/vim-buffergator.vim
+      let g:buffergator_viewport_split_policy = "B"
+      let g:buffergator_display_regime = "bufname"
+
+      set runtimepath^=~/.vim/bundle/vim-fugitive.vim
+
+      " Move to alternatefile, faster nem control+6
+      nnoremap <space><space> <c-^>
+
+      " Show invisible chars
+      set list
+      set listchars=tab:»\ ,trail:·
+
+      " Remove trailling whitespace before saving
+      autocmd BufWritePre * :%s/\s\+$//e

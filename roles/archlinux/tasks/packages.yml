@@ -1,0 +1,9 @@
+---
+- name: install ack
+  pacman:
+    name: ack
+  become: yes
+- name: install tree
+  pacman:
+    name: tree
+  become: yes

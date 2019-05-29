@@ -5,5 +5,5 @@
 
 - name: Ruby | Install ruby_version if necessary
   command: 'ruby-install ruby {{ruby_version}}'
-  when: not ruby_version_present.stat.exists
+  when: ruby_version_present.stat.exists == False
   become: yes

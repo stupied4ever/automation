@@ -3,3 +3,21 @@
   pacman:
     name: tmux
   become: yes
+
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - '~/.tmux'
+    - '~/.tmux/config'
+
+- name: Configure my ~/.tmux.conf
+  copy:
+    dest: ~/.tmux/config
+    src: "tmux/config/"
+
+- name: Configure my ~/.tmux.conf
+  copy:
+    dest: ~/.tmux.conf
+    src: "tmux/tmux.conf"

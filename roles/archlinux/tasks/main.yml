@@ -1,7 +1,16 @@
 ---
+- import_tasks: bash.yml
 - import_tasks: aur.yml
+- import_tasks: packages.yml
 - import_tasks: vim.yml
 - import_tasks: chruby.yml
 - import_tasks: ruby_install.yml
 - import_tasks: ruby.yml
 - import_tasks: tmux.yml
+
+- name: Configure vim as EDITOR
+  lineinfile:
+    path: /home/alface/.bashrc
+    state: present
+    line: 'export EDITOR=vim'
+
