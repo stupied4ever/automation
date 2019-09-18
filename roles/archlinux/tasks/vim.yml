@@ -29,6 +29,9 @@
   git:  repo=https://github.com/tpope/vim-fugitive.git
     dest=~/.vim/bundle/vim-fugitive.vim
 
+- name: Clone tpope/vim-surround plugin
+  git:  repo=https://tpope.io/vim/surround.git
+    dest=~/.vim/bundle/vim-surround.vim
 
 - name: Configure my ~/.vimrc
   copy:
@@ -45,6 +48,7 @@
       let g:NERDTreeDirArrowExpandable='|'
       let g:NERDTreeDirArrowCollapsible='+'
 
+      set runtimepath^=~/.vim/bundle/vim-surround.vim
       set runtimepath^=~/.vim/bundle/ctrlp.vim
 
       " Configure vim-ruby
