@@ -64,9 +64,58 @@
       " Move to alternatefile, faster nem control+6
       nnoremap <space><space> <c-^>
 
+      " Fix common typos like :Q or :W
+      " (https://github.com/leafac/dotfiles/blob/master/vim/files/config/general/mappings.vim)
+      command! -bang -nargs=* -complete=file E e<bang> <args>
+      command! -bang -nargs=* -complete=file W w<bang> <args>
+      command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+      command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+      command! -bang Wa wa<bang>
+      command! -bang WA wa<bang>
+      command! -bang Q q<bang>
+      command! -bang QA qa<bang>
+      command! -bang Qa qa<bang>
+
       " Show invisible chars
       set list
       set listchars=tab:»\ ,trail:·
 
       " Remove trailling whitespace before saving
       autocmd BufWritePre * :%s/\s\+$//e
+
+      " Autoindent
+      set autoindent
+
+      " Turn on smartindentation
+      set smartindent
+
+      " Default spaces
+      set ts=2 sts=2 sw=2 expandtab
+
+      " Spaces for filetypes
+      autocmd FileType makefile setlocal sts=4 sts=4 sw=4 noexpandtab
+      autocmd FileType markdown setlocal sts=4 sts=4 sw=4 expandtab
+      autocmd FileType python   setlocal sts=4 sts=4 sw=4 expandtab
+      autocmd FileType php      setlocal sts=4 sts=4 sw=4 expandtab
+
+      " Load indent file for the current filetype
+      filetype indent on " Enable filetype-specific indenting
+      filetype plugin on " Enable filetype-specific plugins
+
+
+      " After a yank keep in the end of selection
+      vnoremap y ygv<esc>
+
+      " Copy and paste to system clipboard
+      set clipboard=unnamedplus
+
+      " Toggle paste mode
+      set pastetoggle=<leader>p
+
+      " Make pasting in visual-mode sane, by not replacing the register content with
+      " the erased one
+      vnoremap p pgvy
+
+      " Y act like C and D. Yank from the cursor to the end of the line,
+      " (https://github.com/leafac/dotfiles/blob/master/vim/files/config/general/mappings.vim)
+      nnoremap Y y$
