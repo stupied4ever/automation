@@ -1,0 +1,5 @@
+- name: check if running on WSL
+  shell: $(uname -a | grep "Microsoft" | wc -l) -ne 0
+  register: on_wsl
+  failed_when: False
+  changed_when: False

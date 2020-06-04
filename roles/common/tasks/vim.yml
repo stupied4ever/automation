@@ -39,6 +39,29 @@
   git:  repo=https://tpope.io/vim/surround.git
     dest=~/.vim/bundle/vim-surround.vim
 
+- name: Configure Vim to copy paste on wsl environments
+  when: on_wsl
+  copy:
+    dest: ~/.vim/copy-paste.vim
+    content: |
+      augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('clip.exe ',@")
+      augroup END
+
+      map <silent> <leader>=p :r !powershell.exe -Command Get-Clipboard<CR>
+      map! <silent> <C-r>= :r !powershell.exe -Command Get-Clipboard<CR>
+
+
+
+- name: Configure Vim to copy paste not on wsl environments
+  when: not on_wsl
+  copy:
+    dest: ~/.vim/copy-paste.vim
+    content: |
+      " Copy and paste to system clipboard
+      set clipboard=unnamedplus
+
 - name: Configure my ~/.vimrc
   copy:
     dest: ~/.vimrc
@@ -113,23 +136,6 @@
       filetype plugin on " Enable filetype-specific plugins
 
 
-      " After a yank keep in the end of selection
-      vnoremap y ygv<esc>
-
-      " Copy and paste to system clipboard
-      set clipboard=unnamedplus
-
-      " Toggle paste mode
-      set pastetoggle=<leader>p
-
-      " Make pasting in visual-mode sane, by not replacing the register content with
-      " the erased one
-      vnoremap p pgvy
-
-      " Y act like C and D. Yank from the cursor to the end of the line,
-      " (https://github.com/leafac/dotfiles/blob/master/vim/files/config/general/mappings.vim)
-      nnoremap Y y$
-
       "-------------------------temp-files
       " Backup is always nice
       set backup
@@ -202,3 +208,21 @@
 
       " Show ruler on column 80
       set colorcolumn=80
+
+      source  ~/.vim/copy-paste.vim
+
+      " After a yank keep in the end of selection
+      vnoremap y ygv<esc>
+
+      " Toggle paste mode
+      set pastetoggle=<leader>p
+
+      " Make pasting in visual-mode sane, by not replacing the register content with
+      " the erased one
+      vnoremap p pgvy
+
+      " Y act like C and D. Yank from the cursor to the end of the line,
+      " (https://github.com/leafac/dotfiles/blob/master/vim/files/config/general/mappings.vim)
+      nnoremap Y y$
+
+
