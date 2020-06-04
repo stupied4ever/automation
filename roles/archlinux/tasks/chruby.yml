@@ -1,7 +1,8 @@
 ---
+
 - name: Install chruby
   aur:
-   name: chruby
+    name: chruby
   become: yes
   become_user: aur_builder
 
@@ -9,5 +10,5 @@
   lineinfile:
     path: /home/alface/.bashrc
     state: present
-    line: 'source /usr/share/chruby/chruby.sh'
+    line: "source /usr/share/chruby/chruby.sh"
 

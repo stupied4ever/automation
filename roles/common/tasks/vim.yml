@@ -2,6 +2,12 @@
 - name: install vim
   pacman:
     name: gvim
+  when: ansible_os_family == 'Archlinux'
+  become: yes
+- name: install vim
+  apt:
+    pkg: vim-gnome
+  when: ansible_os_family == 'Debian'
   become: yes
 - name: Creates directory
   file:

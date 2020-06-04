@@ -1,6 +1,6 @@
 ---
-- name: Ruby | Ruby install | package dependencies
-  aur: 
+- name: "Ruby | Ruby install | package dependencies"
+  aur:
     name: ruby-install
   become: yes
   become_user: aur_builder

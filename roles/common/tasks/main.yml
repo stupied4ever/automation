@@ -1,0 +1,10 @@
+---
+- import_tasks: bash.yml
+- import_tasks: vim.yml
+
+- name: Configure vim as EDITOR
+  lineinfile:
+    path: /home/alface/.bashrc
+    state: present
+    line: 'export EDITOR=vim'
+
