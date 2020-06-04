@@ -1,7 +1,14 @@
 ---
-- name: install tmux
+- name: install tmux on Arch
+  when: ansible_os_family == 'Archlinux'
   pacman:
     name: tmux
+  become: yes
+
+- name: install tmux on Debian
+  apt:
+    pkg: tmux
+  when: ansible_os_family == 'Debian'
   become: yes
 
 - name: Creates directory

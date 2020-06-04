@@ -1,6 +1,7 @@
 ---
 - import_tasks: bash.yml
 - import_tasks: vim.yml
+- import_tasks: tmux.yml
 
 - name: Configure vim as EDITOR
   lineinfile:
