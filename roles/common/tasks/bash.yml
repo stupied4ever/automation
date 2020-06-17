@@ -24,3 +24,5 @@
         color_my_prompt
 
         EDITOR=vim
+
+- import_tasks: ../wsl/tasks/minttywsl.yml

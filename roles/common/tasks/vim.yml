@@ -35,9 +35,17 @@
   git:  repo=https://github.com/tpope/vim-fugitive.git
     dest=~/.vim/bundle/vim-fugitive.vim
 
+- name: Clone gitgutter plugin
+  git:  repo=https://github.com/airblade/vim-gitgutter.git
+    dest=~/.vim/bundle/vim-gitgutter.vim
+
 - name: Clone tpope/vim-surround plugin
   git:  repo=https://tpope.io/vim/surround.git
     dest=~/.vim/bundle/vim-surround.vim
+
+- name: Clone tpope/vim-surround plugin
+  git:  repo=https://github.com/jez/vim-colors-solarized.git
+    dest=~/.vim/bundle/vim-colors-solarized.vim
 
 - name: Configure Vim to copy paste on wsl environments
   when: on_wsl
@@ -93,6 +101,14 @@
       let g:buffergator_display_regime = "bufname"
 
       set runtimepath^=~/.vim/bundle/vim-fugitive.vim
+      set diffopt=vertical
+
+      set runtimepath^=~/.vim/bundle/vim-gitgutter.vim
+
+      set runtimepath^=~/.vim/bundle/vim-colors-solarized.vim
+      syntax enable
+      set background=dark
+      colorscheme solarized
 
       " Move to alternatefile, faster nem control+6
       nnoremap <space><space> <c-^>

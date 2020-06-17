@@ -1,0 +1,11 @@
+- name: Clone mintty colors
+  git:  repo=https://github.com/mavnn/mintty-colors-solarized
+    dest=~/.mintty/mavnn/mintty-colors-solarized
+  when: on_wsl
+
+- name: Configure mintty on .bashrc
+  lineinfile:
+    path: /home/alface/.bashrc
+    state: present
+    line: "source ~/.mintty/mavnn/mintty-colors-solarized/sol.dark"
+  when: on_wsl
